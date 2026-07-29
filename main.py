@@ -98,9 +98,26 @@ valid_polls = [
 if not valid_polls:
     raise Exception("No matching multi-dimension polls found.")
 
-# 4. Grab the first available poll item from the server
-active_poll = valid_polls[0]
-poll_id = active_poll["id"]
+# 4. Prompt the user to enter a specific Poll ID
+print("Available matching polls:")
+for p in valid_polls:
+    # Safely extract game_month or provide a fallback if it isn't set
+    game_month = p.get("game_month", "N/A")
+    print(f" - ID: {p.get('id'):<5} | Dimension: {p.get('dimension'):<12} | Date: {game_month}")
+
+while True:
+    try:
+        user_choice = int(input("\nEnter the Poll ID you want to run: "))
+        # Find the selected poll in our valid polls list
+        active_poll = next((p for p in valid_polls if p.get("id") == user_choice), None)
+        
+        if active_poll:
+            poll_id = active_poll["id"]
+            break
+        else:
+            print("That ID does not match any available valid polls. Please try again.")
+    except ValueError:
+        print("Invalid input. Please enter a numerical ID.")
 
 # 5. Extract the dimension string DIRECTLY from the server's poll data
 active_dimension = active_poll["dimension"]
@@ -175,9 +192,9 @@ party_order = list(vote_dictionary.keys())
 header = f"{'PARTY':<6} "
 
 for region in country["regions"]:
-    header += f"{region['id'] + ' %':<7}"
+    header += f"{region['id'] + ' %':<8}"
 
-header += f"{'NAT %':<7} {'SEATS':<5}"
+header += f"{'NAT %':<8} {'SEATS':<5}"
 
 print(header)
 print("-" * len(header))
@@ -196,14 +213,14 @@ for party, votes in sorted_parties:
 
     for region in country["regions"]:
         pct = region["normalised"][idx] * 100
-        row += f"{pct:>5.1f}% "
+        row += f"{pct:>6.2f}% "
 
     nat_pct = votes / total_votes * 100
 
     seats = seat_allocations.get(party, 0)
     status = "*" if party not in filtered_votes else " "
 
-    row += f"{nat_pct:>5.1f}%{status} {seats:>5}"
+    row += f"{nat_pct:>6.2f}%{status} {seats:>5}"
 
     print(row)
 
