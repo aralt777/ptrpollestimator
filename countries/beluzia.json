@@ -1,0 +1,68 @@
+{
+    "total_seats": 449,
+    "system": "sainte_lague",
+    "threshold": 0.05,
+    "parties": [
+        { 
+          "id": "AXM",
+          "name": "Axiom"
+        },
+        { 
+          "id": "CPB",
+          "name": "Civic Party of Beluzia"
+        },
+        { 
+          "id": "FED",
+          "name": "Federalists"
+        },
+        { 
+          "id": "GCU",
+          "name": "United Religious Movement"
+        },
+        { 
+          "id": "NLP",
+          "name": "National Liberal Party"
+        },
+        { 
+          "id": "ARL",
+          "name": "Beluzian Progressives"
+        },
+        { 
+          "id": "P",
+          "name": "People's Party"
+        },
+        { 
+          "id": "PUD",
+          "name": "Democratic Trade Unionist Party"
+        },
+        { 
+          "id": "PLOV",
+          "name": "Workers Party of Beluzia"
+        },
+        { 
+          "id": "CR",
+          "name": "Rossanian League"
+        },
+        { 
+          "id": "SDL",
+          "name": "Social Democrats League"
+        }
+    ],
+    "regions": [
+        {"name": "Bailon",
+        "id": "BLN",
+        "weight": 0.081},
+        {"name": "Bamburgh",
+        "id": "BMB",
+        "weight": 0.205}, 
+        {"name": "Harlingen",
+        "id": "HRL",
+        "weight": 0.229}, 
+        {"name": "Negunia",
+        "id": "NGU",
+        "weight": 0.29}, 
+        {"name": "Westmoreland",
+        "id": "WML",
+        "weight": 0.194}
+    ]
+}
