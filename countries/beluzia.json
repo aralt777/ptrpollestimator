@@ -48,21 +48,58 @@
           "name": "Social Democrats League"
         }
     ],
-    "regions": [
-        {"name": "Bailon",
-        "id": "BLN",
-        "weight": 0.081},
-        {"name": "Bamburgh",
-        "id": "BMB",
-        "weight": 0.205}, 
-        {"name": "Harlingen",
-        "id": "HRL",
-        "weight": 0.229}, 
-        {"name": "Negunia",
-        "id": "NGU",
-        "weight": 0.29}, 
-        {"name": "Westmoreland",
-        "id": "WML",
-        "weight": 0.194}
+    "dimensions":{
+    "territory": [
+        {"name": "Bailon", "id": "BLN", "weight": 0.081},
+        {"name": "Bamburgh", "id": "BMB", "weight": 0.205}, 
+        {"name": "Harlingen", "id": "HRL", "weight": 0.229}, 
+        {"name": "Negunia", "id": "NGU", "weight": 0.29}, 
+        {"name": "Westmoreland", "id": "WML", "weight": 0.194}
+    ],
+    "settlement": [
+        {"name": "Urban", "id": "URB", "weight": 0.245},
+        {"name": "Town", "id": "TWN", "weight": 0.300}, 
+        {"name": "Rural", "id": "RUR", "weight": 0.456}
+    ],
+    "ethnicity": [
+        {"name": "Bailonian", "id": "BLN", "weight": 0.09},
+        {"name": "Dundorfian", "id": "DDF", "weight": 0.02}, 
+        {"name": "Layellan", "id": "LYL", "weight": 0.79},
+        {"name": "Luthorian", "id": "LTH", "weight": 0.06},
+        {"name": "Other", "id": "OTH", "weight": 0.04}
+    ],
+    "religion": [
+        {"name": "Aurorian Patriarchalist", "id": "AUR", "weight": 0.215},
+        {"name": "Luthoran", "id": "LTH", "weight": 0.476}, 
+        {"name": "No Religion", "id": "ATH", "weight": 0.207},
+        {"name": "Other", "id": "OTH", "weight": 0.102}
+    ],
+    "sex_age": [
+        {"name": "Men 18-29", "id": "M18-29", "weight": 0.111},
+        {"name": "Men 30-44", "id": "M30-44", "weight": 0.140}, 
+        {"name": "Men 45-64", "id": "M45-64", "weight": 0.158},
+        {"name": "Men 65+", "id": "M65+", "weight": 0.089},
+        {"name": "Women 18-29", "id": "W18-29", "weight": 0.112},
+        {"name": "Women 30-44", "id": "W30-44", "weight": 0.142}, 
+        {"name": "Women 45-64", "id": "W45-64", "weight": 0.159},
+        {"name": "Women 65+", "id": "W65+", "weight": 0.089}
+    ],
+    "structural": [
+        {"name": "Lower Strata Extractive", "id": "LSE", "weight": 0.038},
+        {"name": "Lower Strata Industrial", "id": "LSI", "weight": 0.106},
+        {"name": "Lower Strata Professional", "id": "LSPr", "weight": 0.073}, 
+        {"name": "Lower Strata Public", "id": "LSPu", "weight": 0.101},
+        {"name": "Lower Strata Service", "id": "LSS", "weight": 0.129},
+        {"name": "Middle Strata Extractive", "id": "MSE", "weight": 0.033},
+        {"name": "Middle Strata Industrial", "id": "MSI", "weight": 0.096},
+        {"name": "Middle Strata Professional", "id": "MSPr", "weight": 0.071}, 
+        {"name": "Middle Strata Public", "id": "MSPu", "weight": 0.095},
+        {"name": "Middle Strata Service", "id": "MSS", "weight": 0.118},
+        {"name": "Upper Strata Extractive", "id": "USE", "weight": 0.011},
+        {"name": "Upper Strata Industrial", "id": "USI", "weight": 0.035},
+        {"name": "Upper Strata Professional", "id": "USPr", "weight": 0.028}, 
+        {"name": "Upper Strata Public", "id": "USPu", "weight": 0.022},
+        {"name": "Upper Strata Service", "id": "USS", "weight": 0.044}
     ]
+  }
 }
