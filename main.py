@@ -86,21 +86,34 @@ available_polls_response = list_polls(headers)
 # Access the list of polls inside the "items" key
 available_polls = available_polls_response.get("items", [])
 
-# Target the 'territory' dimension as indicated by your server payload
-regional_polls = [
-    poll
-    for poll in available_polls
-    if poll["dimension"] == "territory"
+# Allowed dimensions defined by your target options
+target_dimensions = {"territory", "settlement", "sex_age", "structural", "religion", "ethnicity"}
+
+# 3. Filter available polls to make sure they match one of your supported groups
+valid_polls = [
+    poll for poll in available_polls 
+    if poll.get("dimension") in target_dimensions
 ]
 
-if not regional_polls:
-    raise Exception("No regional polls found.")
+if not valid_polls:
+    raise Exception("No matching multi-dimension polls found.")
 
-# Access the dictionary inside the list index cleanly
-poll_id = regional_polls[0]["id"]
+# 4. Grab the first available poll item from the server
+active_poll = valid_polls[0]
+poll_id = active_poll["id"]
 
+# 5. Extract the dimension string DIRECTLY from the server's poll data
+active_dimension = active_poll["dimension"]
+print(f"Detected Poll Dimension from Server: {active_dimension}")
+
+# 6. Dynamically update your country object configuration block
+if active_dimension in country.get("dimensions", {}):
+    country["regions"] = country["dimensions"][active_dimension]
+else:
+    raise Exception(f"Dimension '{active_dimension}' configuration missing from your JSON file!")
+
+# 7. Resume the script's normal data gathering execution flow
 detail = get_poll(headers, poll_id)
-
 polls = build_polls(country, detail)
 
 for region in country["regions"]:
