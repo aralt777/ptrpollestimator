@@ -1,2 +1,9 @@
 # ptrpollestimator
-A script to calculate national results from commissioned polls in Particracy: Reborn
+A script to calculate national results and seats from commissioned polls in Particracy: Reborn
+
+
+To run, download the repository as a zip file, and open the python script using a text or code editor, and do the following:
+1. replace the NATION_ID with the ID of the nation you want to run (currently only Beluzia (1), Kalopia (2), and Rilandor (3) are avaliable
+2. replace the PARTY_ID with the ID of your party (to find this, go to "My Party" and take the end of the number
+3. run the script, and the list of polls should be printed for you to choose from!
+
