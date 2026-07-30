@@ -2,14 +2,6 @@
     "total_seats": 400,
     "system": "dhondt",
     "threshold": 0.05,
-    "parties": [
-        {"id": "KRM", "name": "Κίνημα Αναγέννησης του Καλοπιανού (Kalopian Renewal Movement)"},
-        {"id": "KW", "name": "Καλοπιανός Χειμώνας (Kalopian Winter)"},
-        {"id": "OA", "name": "Ομάδα Αγοράς (Market Group)"},
-        {"id": "UKCCP", "name": "Ενωμένο Κομμουνιστικό Λαϊκό Κόμμα της Καλόπια (United Kalopian Communist People Party)"},
-        {"id": "UKP", "name": "Κόμμα Ενωμένη Καλωπία (United Kalopia Party)"},
-        {"id": "Δ", "name": "Δύναμις (Dýnamis)"}
-    ],
     "dimensions":{
     "territory": [
         {"name": "Mossavi", "id": "MSV", "weight": 0.298},
