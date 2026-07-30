@@ -176,6 +176,11 @@ elif country["system"] == "dhondt":
         votes,
         country["total_seats"]
     )
+elif country["system"] == "hare-lr":
+    seat_list = apportionment.hamilton(
+        votes,
+        country["total_seats"]
+    )
 
 party_names = list(filtered_votes.keys())
 
