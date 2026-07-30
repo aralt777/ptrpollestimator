@@ -2,17 +2,6 @@
     "total_seats": 275,
     "system": "sainte_lague",
     "threshold": 0.03,
-    "parties": [
-        {"id": "BF-FP", "name": "Bondeförbundet-Folkpartiet"},
-        {"id": "DF", "name": "Demokratiska Framtidspartiet – Progressiva Davostag"},
-        {"id": "F", "name": "Nationellafolkpartiet / Nationalt Folkeparti"},
-        {"id": "HKP", "name": "Hyggekraftspartiet"},
-        {"id": "N", "name": "Nyströmska arbetarpartiet"},
-        {"id": "RP", "name": "Reformpartiet - Reform Party"},
-        {"id": "SDEP", "name": "Socialdemokratiska-Ekologiska Partiet"},
-        {"id": "UDR", "name": "Unionen för Demokratisk Reform"},
-        {"id": "UPP", "name": "Universella Progressiva Partiet "}
-    ],
     "dimensions":{
     "territory": [
         {"name": "August-Bergshoven", "id": "AGB", "weight": 0.114},
