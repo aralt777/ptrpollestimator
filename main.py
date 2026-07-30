@@ -13,7 +13,8 @@ PARTY_ID = 71        # Your party ID
 NATION_MAPPING = {
     1: "beluzia",
     2: "kalopia",
-    3: "rilandor"
+    3: "rilandor",
+    4: "hulstriaandgaosoto"
 }
 
 country_name = NATION_MAPPING.get(NATION_ID)
