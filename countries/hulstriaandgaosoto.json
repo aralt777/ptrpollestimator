@@ -33,9 +33,9 @@
     "religion": [
         {"name": "Aurorian Patriarchalist", "id": "AUR", "weight": 0.057},
         {"name": "Jienism", "id": "JIE", "weight": 0.121}, 
-        {"name": "Kamism", "id": "JIE", "weight": 0.214}, 
-        {"name": "Luthoran", "id": "JIE", "weight": 0.25}, 
-        {"name": "Maitrayana", "id": "JIE", "weight": 0.108}, 
+        {"name": "Kamism", "id": "KAM", "weight": 0.214}, 
+        {"name": "Luthoran", "id": "LUT", "weight": 0.25}, 
+        {"name": "Maitrayana", "id": "MTY", "weight": 0.108}, 
         {"name": "No Religion", "id": "ATH", "weight": 0.099},
         {"name": "Other", "id": "OTH", "weight": 0.042}
     ],
