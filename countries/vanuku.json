@@ -1,0 +1,69 @@
+{
+    "total_seats": 225,
+    "system": "dhondt",
+    "threshold": 0,
+    "dimensions":{
+    "territory": [
+        {"name": "Awévrnmel","id": "AWÉ","weight": 0.303},
+        {"name": "Banéreger","id": "BAN","weight": 0.132},
+        {"name": "Etofitojafmorzi","id": "EFJ","weight": 0.052},
+        {"name": "Jrkazahil","id": "JRK","weight": 0.085},
+        {"name": "Kapadés","id": "KPD","weight": 0.1},
+        {"name": "Krléstan","id": "KRL","weight": 0.128},
+        {"name": "Kshivrnmel","id": "KSH","weight": 0.142},
+        {"name": "Sntasnjeztaghe","id": "SNT","weight": 0.058}
+    ],
+    "settlement": [
+        {"name": "Urban", "id": "URB", "weight": 0.487},
+        {"name": "Town", "id": "TWN", "weight": 0.224}, 
+        {"name": "Rural", "id": "RUR", "weight": 0.289}
+    ],
+    "ethnicity": [
+        {"name": "Augustan", "id": "AUG", "weight": 0.027},
+        {"name": "Banmék", "id": "BMK", "weight": 0.347},
+        {"name": "Brmék", "id": "BRM", "weight": 0.032}, 
+        {"name": "Jelbék", "id": "JLB", "weight": 0.041}, 
+        {"name": "Krlmék", "id": "KLM", "weight": 0.261}, 
+        {"name": "Majatran", "id": "MJT", "weight": 0.016}, 
+        {"name": "Trmék", "id": "TRM", "weight": 0.235},
+        {"name": "Other", "id": "OTH", "weight": 0.028}
+    ],
+    "religion": [
+        {"name": "Apolistic Hosian", "id": "APH", "weight": 0.044},
+        {"name": "Augustan Church", "id": "AGC", "weight": 0.179},
+        {"name": "Aurorian Patriarchalist", "id": "AUR", "weight": 0.096},
+        {"name": "Israist", "id": "ISR", "weight": 0.197}, 
+        {"name": "Tanhrism", "id": "TAN", "weight": 0.111}, 
+        {"name": "Yeudi", "id": "YDI", "weight": 0.013}, 
+        {"name": "No Religion", "id": "ATH", "weight": 0.34},
+        {"name": "Other", "id": "OTH", "weight": 0.018}
+    ],
+    "sex_age": [
+        {"name": "Men 18-29", "id": "M18-29", "weight": 0.098},
+        {"name": "Men 30-44", "id": "M30-44", "weight": 0.15}, 
+        {"name": "Men 45-64", "id": "M45-64", "weight": 0.167},
+        {"name": "Men 65+", "id": "M65+", "weight": 0.085},
+        {"name": "Women 18-29", "id": "W18-29", "weight": 0.098},
+        {"name": "Women 30-44", "id": "W30-44", "weight": 0.15}, 
+        {"name": "Women 45-64", "id": "W45-64", "weight": 0.168},
+        {"name": "Women 65+", "id": "W65+", "weight": 0.084}
+    ],
+    "structural": [
+        {"name": "Lower Strata Extractive", "id": "LSE", "weight": 0.031},
+        {"name": "Lower Strata Industrial", "id": "LSI", "weight": 0.088},
+        {"name": "Lower Strata Professional", "id": "LSPr", "weight": 0.064}, 
+        {"name": "Lower Strata Public", "id": "LSPu", "weight": 0.055},
+        {"name": "Lower Strata Service", "id": "LSS", "weight": 0.125},
+        {"name": "Middle Strata Extractive", "id": "MSE", "weight": 0.031},
+        {"name": "Middle Strata Industrial", "id": "MSI", "weight": 0.125},
+        {"name": "Middle Strata Professional", "id": "MSPr", "weight": 0.1}, 
+        {"name": "Middle Strata Public", "id": "MSPu", "weight": 0.078},
+        {"name": "Middle Strata Service", "id": "MSS", "weight": 0.174},
+        {"name": "Upper Strata Extractive", "id": "USE", "weight": 0.005},
+        {"name": "Upper Strata Industrial", "id": "USI", "weight": 0.088},
+        {"name": "Upper Strata Professional", "id": "USPr", "weight": 0.03}, 
+        {"name": "Upper Strata Public", "id": "USPu", "weight": 0.016},
+        {"name": "Upper Strata Service", "id": "USS", "weight": 0.048}
+    ]
+  }
+}
