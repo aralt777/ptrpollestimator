@@ -16,7 +16,8 @@ NATION_MAPPING = {
     3: "rilandor",
     4: "hulstriaandgaosoto",
     5: "davostag",
-    6: "dundorf"
+    6: "dundorf",
+    7: "vanuku"
 }
 
 country_name = NATION_MAPPING.get(NATION_ID)
