@@ -37,7 +37,7 @@
         {"name": "Aurorian Patriarchalist", "id": "AUR", "weight": 0.119},
         {"name": "Halawi", "id": "HLW", "weight": 0.143}, 
         {"name": "Israist", "id": "ISR", "weight": 0.297}, 
-        {"name": "Zahiri", "id": "ISR", "weight": 0.042}, 
+        {"name": "Zahiri", "id": "ZAH", "weight": 0.042}, 
         {"name": "No Religion", "id": "ATH", "weight": 0.263},
         {"name": "Other", "id": "OTH", "weight": 0.035}
     ],
