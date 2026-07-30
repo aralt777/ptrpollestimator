@@ -2,13 +2,6 @@
     "total_seats": 375,
     "system": "dhondt",
     "threshold": 0.03,
-    "parties": [
-        {"id": "PNR", "name": "Partei der Nationalen Rettung | 国家救済党 (National Salvation Party)"},
-        {"id": "BAB", "name": "自民協 | ビュルガーブント| BürgerBund"},
-        {"id": "UP", "name": "Unionspartei | 連合党"},
-        {"id": "GeP", "name": "Genossenschaftspartei | 協同党"},
-        {"id": "WKBS", "name": "我々山となる | Wir Können ein Berg Sein"}
-    ],
     "dimensions":{
     "territory": [
         {"name": "Budenlar", "id": "BDN", "weight": 0.215},
