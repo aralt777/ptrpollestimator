@@ -2,19 +2,6 @@
     "total_seats": 401,
     "system": "hare-lr",
     "threshold": 0,
-    "parties": [
-      {"id": "AR", "name": "Alliance pour le Rildanor"},
-      {"id": "DSV", "name": "Droite souverainiste"},
-      {"id": "Élan", "name": "Élan de Rildanor"},
-      {"id": "PeC", "name": "Planète en Commun"},
-      {"id": "PLS", "name": "Parti libéral-socialiste"},
-      {"id": "PNP", "name": "Parti National Progressiste"},
-      {"id": "PPC", "name": "Parti Progressiste Conservateur"},
-      {"id": "PR", "name": "Parti républicain"},
-      {"id": "PTR", "name": "Parti des Travailleurs de Rildanor"},
-      {"id": "RPR", "name": "Rassemblement pour Rildanor"},
-      {"id": "UFR", "name": "Union Federale Radicale"}
-    ],
     "dimensions":{
     "territory": [
         {"name": "Meroix", "id": "MRX", "weight": 0.109},
