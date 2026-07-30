@@ -10,7 +10,13 @@ BASE = "https://api.ptr.zanz2.dev/api"
 NATION_ID = 1          # Change per country
 PARTY_ID = 71        # Your party ID
 
-country_name = "beluzia"
+NATION_MAPPING = {
+    1: "beluzia",
+    2: "kalopia",
+    3: "rilandor"
+}
+
+country_name = NATION_MAPPING.get(NATION_ID)
 
 base_dir = Path(__file__).parent
 country_file = base_dir / "countries" / f"{country_name}.json"
