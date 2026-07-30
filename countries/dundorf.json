@@ -2,17 +2,6 @@
     "total_seats": 630,
     "system": "dhondt",
     "threshold": 0.05,
-    "parties": [
-        {"id": "BZD", "name": "Bündnis Zukunft Dundorf"},
-        {"id": "DSDP", "name": "Dundorfs Sozialdemokratische Partei"},
-        {"id": "GRÜN!", "name": "Grüne Partei für den Planeten"},
-        {"id": "HDB", "name": "Hosiandemokratisches Bündnis"},
-        {"id": "KMI", "name": "Kühe und Milch Initiative"},
-        {"id": "KPD", "name": "Kommunistische Partei Dundorfs"},
-        {"id": "NDZP", "name": "Neue Dundorfische Zentrumspartei"},
-        {"id": "SED", "name": "Soziale Einheitspartei Dundorfs"},
-        {"id": "TLD", "name": "Team Liberaldemokraten"}
-    ],
     "dimensions":{
     "territory": [
         {"name": "Chontalen","id": "CHN","weight": 0.162},
