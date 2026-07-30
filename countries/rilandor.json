@@ -40,7 +40,7 @@
     ],
     "religion": [
         {"name": "Agathism", "id": "AGA", "weight": 0.02},
-        {"name": "Ameliorite", "id": "AGA", "weight": 0.045},
+        {"name": "Ameliorite", "id": "AME", "weight": 0.045},
         {"name": "Aurorian Patriarchalist", "id": "AUR", "weight": 0.651},
         {"name": "Israist", "id": "ISR", "weight": 0.033}, 
         {"name": "No Religion", "id": "ATH", "weight": 0.205},
