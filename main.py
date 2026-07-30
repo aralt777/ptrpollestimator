@@ -35,6 +35,36 @@ def auth_headers():
         "Content-Type": "application/json"
     }
 
+def get_parties(headers):
+    r = requests.get(
+        f"{BASE}/parties/?nation_id={NATION_ID}",
+        headers=headers
+    )
+
+    r.raise_for_status()
+
+    parties = r.json()
+
+    return [
+        party
+        for party in parties
+        if party["is_active"]
+    ]
+
+    
+headers = auth_headers()
+
+party_data = get_parties(headers)
+
+party_ids = [
+    party["abbreviation"]
+    for party in party_data
+]
+
+party_names = {
+    party["abbreviation"]: party["name"]
+    for party in party_data
+}
 
 def list_polls(headers):
     # Ensure there is only one slash between BASE and nations
@@ -72,8 +102,8 @@ def build_polls(country, detail):
 
         # Rebuild in the order your simulator expects
         ordered_poll = [
-            party_support.get(party["id"], 0)
-            for party in country["parties"]
+            party_support.get(pid, 0)
+            for pid in party_ids
         ]
 
         # Find matching region
@@ -153,7 +183,7 @@ for region in country["regions"]:
         for vote in region["poll"]
     ]
 
-national_vote = [0] * len(country["parties"])
+national_vote = [0] * len(party_ids)
 
 for region in country["regions"]:
     for i, vote in enumerate(region["normalised"]):
@@ -161,8 +191,8 @@ for region in country["regions"]:
 
 vote_dictionary = {}
 
-for party, vote in zip(country["parties"], national_vote):
-    vote_dictionary[party["id"]] = int(vote * 100000)
+for party_id, vote in zip(party_ids, national_vote):
+    vote_dictionary[party_id] = int(vote * 100000)
 
 total_votes = sum(vote_dictionary.values())
 
