@@ -1,0 +1,72 @@
+{
+    "total_seats": 400,
+    "system": "dhondt",
+    "threshold": 0.05,
+    "parties": [
+        {"id": "KRM", "name": "Κίνημα Αναγέννησης του Καλοπιανού (Kalopian Renewal Movement)"},
+        {"id": "KW", "name": "Καλοπιανός Χειμώνας (Kalopian Winter)"},
+        {"id": "OA", "name": "Ομάδα Αγοράς (Market Group)"},
+        {"id": "UKCCP", "name": "Ενωμένο Κομμουνιστικό Λαϊκό Κόμμα της Καλόπια (United Kalopian Communist People Party)"},
+        {"id": "UKP", "name": "Κόμμα Ενωμένη Καλωπία (United Kalopia Party)"},
+        {"id": "Δ", "name": "Δύναμις (Dýnamis)"}
+    ],
+    "dimensions":{
+    "territory": [
+        {"name": "Mossavi", "id": "MSV", "weight": 0.298},
+        {"name": "Sessold", "id": "SSL", "weight": 0.140}, 
+        {"name": "Siphina", "id": "SPH", "weight": 0.139}, 
+        {"name": "Thallasa", "id": "THL", "weight": 0.236}, 
+        {"name": "Wantuni", "id": "WTN", "weight": 0.187}
+    ],
+    "settlement": [
+        {"name": "Urban", "id": "URB", "weight": 0.366},
+        {"name": "Town", "id": "TWN", "weight": 0.266}, 
+        {"name": "Rural", "id": "RUR", "weight": 0.368}
+    ],
+    "ethnicity": [
+        {"name": "Istochniak", "id": "IST", "weight": 0.04},
+        {"name": "Kalopian", "id": "KLP", "weight": 0.55},
+        {"name": "Majatran", "id": "MJT", "weight": 0.16}, 
+        {"name": "Siphinian", "id": "SPH", "weight": 0.14},
+        {"name": "Turjak", "id": "TRJ", "weight": 0.08},
+        {"name": "Other", "id": "OTH", "weight": 0.03}
+    ],
+    "religion": [
+        {"name": "Abadist", "id": "ABD", "weight": 0.021},
+        {"name": "Augustinian Church", "id": "AUG", "weight": 0.075},
+        {"name": "Aurorian Patriarchalist", "id": "AUR", "weight": 0.119},
+        {"name": "Halawi", "id": "HLW", "weight": 0.143}, 
+        {"name": "Israist", "id": "ISR", "weight": 0.297}, 
+        {"name": "Zahiri", "id": "ISR", "weight": 0.042}, 
+        {"name": "No Religion", "id": "ATH", "weight": 0.263},
+        {"name": "Other", "id": "OTH", "weight": 0.035}
+    ],
+    "sex_age": [
+        {"name": "Men 18-29", "id": "M18-29", "weight": 0.081},
+        {"name": "Men 30-44", "id": "M30-44", "weight": 0.126}, 
+        {"name": "Men 45-64", "id": "M45-64", "weight": 0.174},
+        {"name": "Men 65+", "id": "M65+", "weight": 0.121},
+        {"name": "Women 18-29", "id": "W18-29", "weight": 0.081},
+        {"name": "Women 30-44", "id": "W30-44", "weight": 0.125}, 
+        {"name": "Women 45-64", "id": "W45-64", "weight": 0.172},
+        {"name": "Women 65+", "id": "W65+", "weight": 0.12}
+    ],
+    "structural": [
+        {"name": "Lower Strata Extractive", "id": "LSE", "weight": 0.05},
+        {"name": "Lower Strata Industrial", "id": "LSI", "weight": 0.08},
+        {"name": "Lower Strata Professional", "id": "LSPr", "weight": 0.074}, 
+        {"name": "Lower Strata Public", "id": "LSPu", "weight": 0.096},
+        {"name": "Lower Strata Service", "id": "LSS", "weight": 0.138},
+        {"name": "Middle Strata Extractive", "id": "MSE", "weight": 0.036},
+        {"name": "Middle Strata Industrial", "id": "MSI", "weight": 0.071},
+        {"name": "Middle Strata Professional", "id": "MSPr", "weight": 0.069}, 
+        {"name": "Middle Strata Public", "id": "MSPu", "weight": 0.088},
+        {"name": "Middle Strata Service", "id": "MSS", "weight": 0.127},
+        {"name": "Upper Strata Extractive", "id": "USE", "weight": 0.015},
+        {"name": "Upper Strata Industrial", "id": "USI", "weight": 0.033},
+        {"name": "Upper Strata Professional", "id": "USPr", "weight": 0.034}, 
+        {"name": "Upper Strata Public", "id": "USPu", "weight": 0.031},
+        {"name": "Upper Strata Service", "id": "USS", "weight": 0.059}
+    ]
+  }
+}
