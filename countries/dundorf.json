@@ -1,0 +1,78 @@
+{
+    "total_seats": 630,
+    "system": "dhondt",
+    "threshold": 0.05,
+    "parties": [
+        {"id": "BZD", "name": "Bündnis Zukunft Dundorf"},
+        {"id": "DSDP", "name": "Dundorfs Sozialdemokratische Partei"},
+        {"id": "GRÜN!", "name": "Grüne Partei für den Planeten"},
+        {"id": "HDB", "name": "Hosiandemokratisches Bündnis"},
+        {"id": "KMI", "name": "Kühe und Milch Initiative"},
+        {"id": "KPD", "name": "Kommunistische Partei Dundorfs"},
+        {"id": "NDZP", "name": "Neue Dundorfische Zentrumspartei"},
+        {"id": "SED", "name": "Soziale Einheitspartei Dundorfs"},
+        {"id": "TLD", "name": "Team Liberaldemokraten"}
+    ],
+    "dimensions":{
+    "territory": [
+        {"name": "Chontalen","id": "CHN","weight": 0.162},
+        {"name": "Dunburg","id": "DBG","weight": 0.073},
+        {"name": "Dunlake","id": "DLK","weight": 0.279},
+        {"name": "Grozvic","id": "GRZ","weight": 0.086},
+        {"name": "Julstoch","id": "JUL","weight": 0.081},
+        {"name": "Muzelstein","id": "MUZ","weight": 0.06},
+        {"name": "Oderveld","id": "ODV","weight": 0.258}
+    ],
+    "settlement": [
+        {"name": "Urban", "id": "URB", "weight": 0.41},
+        {"name": "Town", "id": "TWN", "weight": 0.336}, 
+        {"name": "Rural", "id": "RUR", "weight": 0.254}
+    ],
+    "ethnicity": [
+        {"name": "Delic", "id": "DLC", "weight": 0.025},
+        {"name": "Dundorfian", "id": "DDF", "weight": 0.82},
+        {"name": "Endralonian", "id": "DDF", "weight": 0.01},
+        {"name": "Hobrazian", "id": "HBZ", "weight": 0.015},
+        {"name": "Ikradonian", "id": "IKR", "weight": 0.02}, 
+        {"name": "Majatran", "id": "MJT", "weight": 0.015},
+        {"name": "Narik", "id": "NRK", "weight": 0.07},
+        {"name": "Yeudi", "id": "YDI", "weight": 0.015}
+    ],
+    "religion": [
+        {"name": "Ameliorite", "id": "AME", "weight": 0.332},
+        {"name": "Aurorian Patriarchalist", "id": "AUR", "weight": 0.107},
+        {"name": "Israist", "id": "ISR", "weight": 0.015}, 
+        {"name": "Terran Patriarchalist", "id": "TRR", "weight": 0.027},
+        {"name": "Yeudi", "id": "YDI", "weight": 0.015}, 
+        {"name": "No Religion", "id": "ATH", "weight": 0.499},
+        {"name": "Other", "id": "OTH", "weight": 0.004}
+    ],
+    "sex_age": [
+        {"name": "Men 18-29", "id": "M18-29", "weight": 0.089},
+        {"name": "Men 30-44", "id": "M30-44", "weight": 0.128}, 
+        {"name": "Men 45-64", "id": "M45-64", "weight": 0.162},
+        {"name": "Men 65+", "id": "M65+", "weight": 0.12},
+        {"name": "Women 18-29", "id": "W18-29", "weight": 0.09},
+        {"name": "Women 30-44", "id": "W30-44", "weight": 0.128}, 
+        {"name": "Women 45-64", "id": "W45-64", "weight": 0.162},
+        {"name": "Women 65+", "id": "W65+", "weight": 0.121}
+    ],
+    "structural": [
+        {"name": "Lower Strata Extractive", "id": "LSE", "weight": 0.006},
+        {"name": "Lower Strata Industrial", "id": "LSI", "weight": 0.074},
+        {"name": "Lower Strata Professional", "id": "LSPr", "weight": 0.075}, 
+        {"name": "Lower Strata Public", "id": "LSPu", "weight": 0.05},
+        {"name": "Lower Strata Service", "id": "LSS", "weight": 0.103},
+        {"name": "Middle Strata Extractive", "id": "MSE", "weight": 0.01},
+        {"name": "Middle Strata Industrial", "id": "MSI", "weight": 0.119},
+        {"name": "Middle Strata Professional", "id": "MSPr", "weight": 0.126}, 
+        {"name": "Middle Strata Public", "id": "MSPu", "weight": 0.084},
+        {"name": "Middle Strata Service", "id": "MSS", "weight": 0.168},
+        {"name": "Upper Strata Extractive", "id": "USE", "weight": 0.004},
+        {"name": "Upper Strata Industrial", "id": "USI", "weight": 0.044},
+        {"name": "Upper Strata Professional", "id": "USPr", "weight": 0.05}, 
+        {"name": "Upper Strata Public", "id": "USPu", "weight": 0.024},
+        {"name": "Upper Strata Service", "id": "USS", "weight": 0.063}
+    ]
+  }
+}
