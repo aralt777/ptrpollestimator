@@ -1,0 +1,63 @@
+{
+    "total_seats": 150,
+    "system": "dhondt",
+    "threshold": 0.05,
+    "dimensions":{
+    "territory": [
+        {"name": "Boerestaat","id": "BOE","weight": 0.196},
+        {"name": "Ijkpieland","id": "IJK","weight": 0.099},
+        {"name": "Kaap","id": "KAP","weight": 0.26},
+        {"name": "Sint Pietereiland","id": "SPT","weight": 0.206},
+        {"name": "Tasselstaat","id": "TAS","weight": 0.239}
+    ],
+    "settlement": [
+        {"name": "Urban", "id": "URB", "weight": 0.38},
+        {"name": "Town", "id": "TWN", "weight": 0.25}, 
+        {"name": "Rural", "id": "RUR", "weight": 0.37}
+    ],
+    "ethnicity": [
+        {"name": "Aldegarian", "id": "ALD", "weight": 0.02}, 
+        {"name": "Canrillaise", "id": "CNR", "weight": 0.06}, 
+        {"name": "Duntrekker", "id": "DUN", "weight": 0.63},
+        {"name": "Iftgoerroon", "id": "IFT", "weight": 0.19},
+        {"name": "Ikpi", "id": "IKP", "weight": 0.07}, 
+        {"name": "Mordusian", "id": "MRD", "weight": 0.02}, 
+        {"name": "Other", "id": "OTH", "weight": 0.01}
+    ],
+    "religion": [
+        {"name": "Ameliorite", "id": "AME", "weight": 0.793},
+        {"name": "Aurorian Patriarchalist", "id": "AUR", "weight": 0.073},
+        {"name": "Luthoran", "id": "LTH", "weight": 0.042}, 
+        {"name": "Yazdism", "id": "YAZ", "weight": 0.06}, 
+        {"name": "No Religion", "id": "ATH", "weight": 0.022},
+        {"name": "Other", "id": "OTH", "weight": 0.01}
+    ],
+    "sex_age": [
+        {"name": "Men 18-29", "id": "M18-29", "weight": 0.088},
+        {"name": "Men 30-44", "id": "M30-44", "weight": 0.135}, 
+        {"name": "Men 45-64", "id": "M45-64", "weight": 0.164},
+        {"name": "Men 65+", "id": "M65+", "weight": 0.11},
+        {"name": "Women 18-29", "id": "W18-29", "weight": 0.089},
+        {"name": "Women 30-44", "id": "W30-44", "weight": 0.136}, 
+        {"name": "Women 45-64", "id": "W45-64", "weight": 0.165},
+        {"name": "Women 65+", "id": "W65+", "weight": 0.111}
+    ],
+    "structural": [
+        {"name": "Lower Strata Extractive", "id": "LSE", "weight": 0.04},
+        {"name": "Lower Strata Industrial", "id": "LSI", "weight": 0.079},
+        {"name": "Lower Strata Professional", "id": "LSPr", "weight": 0.067}, 
+        {"name": "Lower Strata Public", "id": "LSPu", "weight": 0.064},
+        {"name": "Lower Strata Service", "id": "LSS", "weight": 0.128},
+        {"name": "Middle Strata Extractive", "id": "MSE", "weight": 0.038},
+        {"name": "Middle Strata Industrial", "id": "MSI", "weight": 0.091},
+        {"name": "Middle Strata Professional", "id": "MSPr", "weight": 0.083}, 
+        {"name": "Middle Strata Public", "id": "MSPu", "weight": 0.072},
+        {"name": "Middle Strata Service", "id": "MSS", "weight": 0.148},
+        {"name": "Upper Strata Extractive", "id": "USE", "weight": 0.016},
+        {"name": "Upper Strata Industrial", "id": "USI", "weight": 0.042},
+        {"name": "Upper Strata Professional", "id": "USPr", "weight": 0.04}, 
+        {"name": "Upper Strata Public", "id": "USPu", "weight": 0.023},
+        {"name": "Upper Strata Service", "id": "USS", "weight": 0.071}
+    ]
+  }
+}
