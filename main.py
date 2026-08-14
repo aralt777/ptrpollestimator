@@ -68,6 +68,11 @@ party_names = {
     for party in party_data
 }
 
+party_seats = {
+    party["abbreviation"]: party["seat_count"]
+    for party in party_data
+}
+
 def list_polls(headers):
     # Ensure there is only one slash between BASE and nations
     r = requests.get(
@@ -193,18 +198,31 @@ for region in country["regions"]:
 
 vote_dictionary = {}
 
+# 1. Remove party_seats from zip() so we don't accidentally pull text keys
 for party_id, vote in zip(party_ids, national_vote):
-    vote_dictionary[party_id] = int(vote * 100000)
+    
+    # 2. Safely look up the previous seats using the party_id string
+    # If party_seats is a dict, this grabs the number. If it's a list, use int(party_seats[party_ids.index(party_id)])
+    if isinstance(party_seats, dict):
+        c_seat = party_seats.get(party_id, 0)
+    else:
+        # Fallback if it's a list/sequence matching party_ids order
+        idx = party_ids.index(party_id)
+        c_seat = party_seats[idx]
 
-total_votes = sum(vote_dictionary.values())
+    vote_dictionary[party_id] = {
+        "votes": int(vote * 100000),
+        "current_seats": int(c_seat)  # Clean integer conversion
+    }
+total_votes = sum(data["votes"] for data in vote_dictionary.values())
 
 filtered_votes = {
-    party: votes
-    for party, votes in vote_dictionary.items()
-    if votes / total_votes >= country["threshold"]
+    party: data
+    for party, data in vote_dictionary.items()
+    if data["votes"] / total_votes >= country["threshold"]
 }
 
-votes = list(filtered_votes.values())
+votes = [data["votes"] for data in filtered_votes.values()]
 
 if country["system"] == "sainte_lague":
     seat_list = apportionment.sainte_lague(
@@ -229,7 +247,7 @@ seat_allocations = dict(zip(party_names, seat_list))
 
 sorted_seats = sorted(
     seat_allocations.items(), 
-    key=lambda x: (filtered_votes[x[0]], x[1]), 
+    key=lambda x: (filtered_votes[x[0]]["votes"], x[1]), 
     reverse=True
 )
 
@@ -240,18 +258,18 @@ header = f"{'PARTY':<6} "
 for region in country["regions"]:
     header += f"{region['id'] + ' %':<8}"
 
-header += f"{'NAT %':<8} {'SEATS':<5}"
+header += f"{'NAT %':<8} {'SEATS':<5} {'+/-':<6}"
 
 print(header)
 print("-" * len(header))
 
 sorted_parties = sorted(
     vote_dictionary.items(),
-    key=lambda x: x[1],
+    key=lambda x: x[1]["votes"],
     reverse=True
 )
 
-for party, votes in sorted_parties:
+for party, data in sorted_parties:
 
     idx = party_order.index(party)
 
@@ -260,13 +278,22 @@ for party, votes in sorted_parties:
     for region in country["regions"]:
         pct = region["normalised"][idx] * 100
         row += f"{pct:>6.2f}% "
+    party_votes = data["votes"]
+    current_seats = data["current_seats"]
 
-    nat_pct = votes / total_votes * 100
-
+    nat_pct = party_votes / total_votes * 100
     seats = seat_allocations.get(party, 0)
     status = "*" if party not in filtered_votes else " "
+    changevalue = seats - current_seats
 
-    row += f"{nat_pct:>6.2f}%{status} {seats:>5}"
+    if changevalue > 0:
+        change_str = f"+{changevalue}"
+    elif changevalue < 0:
+        change_str = f"{changevalue}"  
+    else:
+        change_str = "="
+
+    row += f"{nat_pct:>6.2f}%{status} {seats:>5} {change_str:>4}"
 
     print(row)
 
