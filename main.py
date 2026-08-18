@@ -300,10 +300,14 @@ party_votes_only = {
 list_votes_dict = aggregate_to_lists(party_votes_only, party_to_list)
 
 total_list_votes = sum(list_votes_dict.values())
+
+# Use list_threshold if available, otherwise use regular threshold
+list_threshold = country.get("list_threshold", country["threshold"])
+
 filtered_lists = {
     list_id: votes
     for list_id, votes in list_votes_dict.items()
-    if votes / total_list_votes >= country["threshold"]
+    if votes / total_list_votes >= list_threshold
 }
 
 votes = list(filtered_lists.values())
@@ -378,9 +382,9 @@ for list_id in list_names:
 # PARTY TABLE WITH REGIONAL BREAKDOWNS
 # ============================================
 
-print("\n" + "="*150)
-print("PARTY BREAKDOWN (with regional votes and calculated seats from electoral lists)")
-print("="*150 + "\n")
+print("\n" + "="*50)
+print("POLL RESULT BREAKDOWN")
+print("="*50 + "\n")
 
 # Build party to ratio_pct mapping from list_members
 party_ratio_pct = {}
@@ -402,7 +406,7 @@ header = f"{'PARTY':<6} "
 for region in country["regions"]:
     header += f"{region['id'] + ' %':<8}"
 
-header += f"{'NAT %':<8} {'SEATS':<5} {'+/-':<6}"
+header += f"{'NAT %':<8} {'SEATS':<5} {'SHARE':<8} {'+/-':<4}"
 
 print(header)
 print("-" * len(header))
@@ -440,6 +444,7 @@ for party, data in sorted_parties:
     nat_pct = party_votes / total_votes * 100
     status = "*" if party not in filtered_votes else " "
     changevalue = calculated_seats - current_seats
+    seatshare = calculated_seats / country["total_seats"] * 100
 
     if changevalue > 0:
         change_str = f"+{changevalue}"
@@ -448,7 +453,7 @@ for party, data in sorted_parties:
     else:
         change_str = "="
 
-    row += f"{nat_pct:>6.2f}%{status} {calculated_seats:>5} {change_str:>4}"
+    row += f"{nat_pct:>6.2f}%{status} {calculated_seats:>5} {seatshare:>6.2f} {change_str:>4}"
 
     print(row)
 
