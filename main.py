@@ -53,10 +53,23 @@ def get_parties(headers):
         if party["is_active"]
     ]
 
+def get_electoral_lists(headers):
+    r = requests.get(
+        f"{BASE}/nations/{NATION_ID}/electoral-lists",
+        headers=headers
+    )
+
+    r.raise_for_status()
+
+    return r.json()
+
+
     
 headers = auth_headers()
 
 party_data = get_parties(headers)
+
+electoral_lists = get_electoral_lists(headers)
 
 party_ids = [
     party["abbreviation"]
@@ -72,6 +85,57 @@ party_seats = {
     party["abbreviation"]: party["seat_count"]
     for party in party_data
 }
+
+def build_list_lookup(electoral_lists):
+
+    party_to_list = {}
+
+    for electoral_list in electoral_lists:
+
+        if electoral_list["status"] != "active":
+            continue
+
+        members = electoral_list.get("members", [])
+
+        for member in members:
+
+            if not member["is_active"]:
+                continue
+
+            party_to_list[member["abbreviation"]] = (
+                electoral_list["abbreviation"]
+            )
+
+    return party_to_list
+
+def build_electoral_list_data(electoral_lists):
+
+    party_to_list = {}
+    list_members = {}
+
+    for electoral_list in electoral_lists:
+
+        if electoral_list["status"] != "active":
+            continue
+
+        list_id = electoral_list["abbreviation"]
+
+        list_members[list_id] = {}
+
+        for member in electoral_list.get("members", []):
+
+            if not member["is_active"]:
+                continue
+
+            party_id = member["abbreviation"]
+
+            party_to_list[party_id] = list_id
+
+            list_members[list_id][party_id] = (
+                member["ratio_pct"]
+            )
+
+    return party_to_list, list_members
 
 def list_polls(headers):
     # Ensure there is only one slash between BASE and nations
@@ -144,17 +208,14 @@ valid_polls = [
 if not valid_polls:
     raise Exception("No matching multi-dimension polls found.")
 
-# 4. Prompt the user to enter a specific Poll ID
 print("Available matching polls:")
 for p in valid_polls:
-    # Safely extract game_month or provide a fallback if it isn't set
     game_month = p.get("game_month", "N/A")
     print(f" - ID: {p.get('id'):<5} | Dimension: {p.get('dimension'):<12} | Date: {game_month}")
 
 while True:
     try:
         user_choice = int(input("\nEnter the Poll ID you want to run: "))
-        # Find the selected poll in our valid polls list
         active_poll = next((p for p in valid_polls if p.get("id") == user_choice), None)
         
         if active_poll:
@@ -196,33 +257,56 @@ for region in country["regions"]:
     for i, vote in enumerate(region["normalised"]):
         national_vote[i] += vote * region["weight"]
 
+def aggregate_to_lists(party_votes, party_to_list):
+
+    list_votes = {}
+
+    for party, vote in party_votes.items():
+
+        electoral_list = party_to_list.get(
+            party,
+            party
+        )
+
+        list_votes[electoral_list] = (
+            list_votes.get(electoral_list, 0)
+            + vote
+        )
+
+    return list_votes
+
 vote_dictionary = {}
 
-# 1. Remove party_seats from zip() so we don't accidentally pull text keys
 for party_id, vote in zip(party_ids, national_vote):
-    
-    # 2. Safely look up the previous seats using the party_id string
-    # If party_seats is a dict, this grabs the number. If it's a list, use int(party_seats[party_ids.index(party_id)])
     if isinstance(party_seats, dict):
         c_seat = party_seats.get(party_id, 0)
     else:
-        # Fallback if it's a list/sequence matching party_ids order
         idx = party_ids.index(party_id)
         c_seat = party_seats[idx]
 
     vote_dictionary[party_id] = {
         "votes": int(vote * 100000),
-        "current_seats": int(c_seat)  # Clean integer conversion
+        "current_seats": int(c_seat)  
     }
 total_votes = sum(data["votes"] for data in vote_dictionary.values())
 
-filtered_votes = {
-    party: data
+party_to_list, list_members = build_electoral_list_data(electoral_lists)
+
+party_votes_only = {
+    party: data["votes"]
     for party, data in vote_dictionary.items()
-    if data["votes"] / total_votes >= country["threshold"]
 }
 
-votes = [data["votes"] for data in filtered_votes.values()]
+list_votes_dict = aggregate_to_lists(party_votes_only, party_to_list)
+
+total_list_votes = sum(list_votes_dict.values())
+filtered_lists = {
+    list_id: votes
+    for list_id, votes in list_votes_dict.items()
+    if votes / total_list_votes >= country["threshold"]
+}
+
+votes = list(filtered_lists.values())
 
 if country["system"] == "sainte_lague":
     seat_list = apportionment.sainte_lague(
@@ -241,15 +325,75 @@ elif country["system"] == "hare-lr":
         country["total_seats"]
     )
 
-party_names = list(filtered_votes.keys())
+list_names = list(filtered_lists.keys())
 
-seat_allocations = dict(zip(party_names, seat_list))
+seat_allocations = dict(zip(list_names, seat_list))
+
+filtered_party_votes = {
+    party: vote_dictionary[party]["votes"]
+    for party in vote_dictionary.keys()
+    if vote_dictionary[party]["votes"] / total_votes >= country["threshold"]
+}
+
+party_votes_list = list(filtered_party_votes.values())
+
+if country["system"] == "sainte_lague":
+    party_seat_list = apportionment.sainte_lague(
+        party_votes_list,
+        country["total_seats"]
+    )
+
+elif country["system"] == "dhondt":
+    party_seat_list = apportionment.dhondt(
+        party_votes_list,
+        country["total_seats"]
+    )
+elif country["system"] == "hare-lr":
+    party_seat_list = apportionment.hamilton(
+        party_votes_list,
+        country["total_seats"]
+    )
+
+party_names_filtered = list(filtered_party_votes.keys())
+party_seat_allocations = dict(zip(party_names_filtered, party_seat_list))
 
 sorted_seats = sorted(
     seat_allocations.items(), 
-    key=lambda x: (filtered_votes[x[0]]["votes"], x[1]), 
+    key=lambda x: (filtered_lists[x[0]], x[1]), 
     reverse=True
 )
+
+# Build list to current seats mapping
+list_current_seats = {}
+for list_id in list_names:
+    current_seats = 0
+    for party, list_assignment in party_to_list.items():
+        if list_assignment == list_id and party in vote_dictionary:
+            current_seats += vote_dictionary[party]["current_seats"]
+    list_current_seats[list_id] = current_seats
+
+# Electoral list calculations (for seat allocation to parties, but not displayed)
+
+# ============================================
+# PARTY TABLE WITH REGIONAL BREAKDOWNS
+# ============================================
+
+print("\n" + "="*150)
+print("PARTY BREAKDOWN (with regional votes and calculated seats from electoral lists)")
+print("="*150 + "\n")
+
+# Build party to ratio_pct mapping from list_members
+party_ratio_pct = {}
+for list_id, members in list_members.items():
+    for party_id, ratio in members.items():
+        party_ratio_pct[party_id] = ratio
+
+# Build filtered_votes: parties whose lists passed the threshold
+filtered_votes = {
+    party: vote_dictionary[party]
+    for party in vote_dictionary.keys()
+    if party_to_list.get(party, party) in filtered_lists
+}
 
 party_order = list(vote_dictionary.keys())
 
@@ -278,13 +422,24 @@ for party, data in sorted_parties:
     for region in country["regions"]:
         pct = region["normalised"][idx] * 100
         row += f"{pct:>6.2f}% "
+    
     party_votes = data["votes"]
     current_seats = data["current_seats"]
-
+    
+    # Check if party is in an electoral list
+    if party in party_to_list:
+        # Party is in a list, calculate based on list allocation
+        assigned_list = party_to_list[party]
+        list_seats = seat_allocations.get(assigned_list, 0)
+        ratio = party_ratio_pct.get(party, 0) / 100  # Convert from percentage to decimal
+        calculated_seats = int(list_seats * ratio)
+    else:
+        # Party is not in a list, use party-based allocation from poll
+        calculated_seats = party_seat_allocations.get(party, 0)
+    
     nat_pct = party_votes / total_votes * 100
-    seats = seat_allocations.get(party, 0)
     status = "*" if party not in filtered_votes else " "
-    changevalue = seats - current_seats
+    changevalue = calculated_seats - current_seats
 
     if changevalue > 0:
         change_str = f"+{changevalue}"
@@ -293,11 +448,11 @@ for party, data in sorted_parties:
     else:
         change_str = "="
 
-    row += f"{nat_pct:>6.2f}%{status} {seats:>5} {change_str:>4}"
+    row += f"{nat_pct:>6.2f}%{status} {calculated_seats:>5} {change_str:>4}"
 
     print(row)
 
 if country["threshold"] > 0:
     print(
-        f"\n* Party failed to cross the {country['threshold'] * 100:.0f}% national threshold."
+        f"\n* Party in a list that failed to cross the {country['threshold'] * 100:.0f}% national threshold."
     )
